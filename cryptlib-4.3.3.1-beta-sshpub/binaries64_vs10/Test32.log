@@ -1,0 +1,21 @@
+﻿  certimp.c
+  certproc.c
+  certs.c
+  devices.c
+  envelope.c
+  highlvl.c
+  keydbx.c
+  keyfile.c
+  loadkey.c
+  lowlvl.c
+  s_cmp.c
+  s_scep.c
+  sreqresp.c
+  ssh.c
+  ssl.c
+  stress.c
+  testfunc.c
+  testlib.c
+  utils.c
+  Generating Code...
+LINK : fatal error LNK1181: cannot open input file 'D:\diconnect\DiProtocols.dev\Tools\SSHPUBLICIMPORTER.FIXBUG\cryptlib-4.3.3.1-beta-sshpub\binaries64_vs10\cl64.lib'

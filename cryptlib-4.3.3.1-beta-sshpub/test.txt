@@ -1,0 +1,56 @@
+testlib - cryptlib 32-bit big-endian self-test framework.
+Copyright Peter Gutmann 1995 - 2017.
+
+Initialising cryptlib...done.
+SVR: Testing SSH pubkey-auth session...
+SVR: Pubkey auth.keyset open failed with error code -40, line 991.
+SVR: Testing local SSH pubkey-auth session...
+SVR: Pubkey auth.keyset open failed with error code -40, line 991.
+Testing local SSH pubkey-auth session...
+Attempt to activate SSH client session failed with error code -40, line 1241.
+  Error message = 'WSAECONNREFUSED: The attempt to connect was rejected'.
+SVR: Testing SCEP server session...
+Creating PKI users...
+-- Adding new PKI user information --
+PKI user information is already present from a previous run, reusing existing
+  PKI user data...
+Certificate object subject name is:
+  C = NZ.
+  O = Dave's Wetaburgers.
+  OU = Procurement.
+  CN = Test SCEP PKI user.
+Attributes present (by cryptlib ID) are:
+  Attribute group 2265, values = 2265.
+Some of the common extensions/attributes are:
+  PKI user ID = CSSVV-59UJC-DUVLC.
+  PKI user issue password = VZC59-GAXG9-B4B9N-3HW9N.
+  PKI user revocation password = VFN8A-TWLFR-6SPB8-7EKR2.
+-- New PKI user information ends --
+
+SVR: Attempt to activate SCEP server session failed with error code -40, line 1137.
+  No extended error information available.
+Testing cryptlib SCEP session...
+Using user name CSSVV-59UJC-DUVLC, password VZC59-GAXG9-B4B9N-3HW9N.
+Attempt to activate SCEP client session failed with error code -32, line 939.
+  Error message = 
+  ''GetCACert' operation failed: Expected HTTP header, got '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict[...]''.
+Testing RSA private key write to PGP key file...
+Write of RSA private key to PGP key file succeeded.
+
+Testing RSA private key read from PGP key file...
+Read of RSA private key from PGP key file succeeded.
+
+cryptEnd() failed with error code CRYPT_ERROR_INCOMPLETE, a code path in the
+self-test code resulted in an error return without a full cleanup of objects.
+If you were running the multithreaded loopback tests this may be because one
+or more threads lost sync with other threads and exited without cleaning up
+its objects.  This happens occasionally due to network timing issues or
+thread scheduling differences.
+
+The test was aborted due to an error being detected.  If you want to report
+this problem, please provide as much information as possible to allow it to
+be diagnosed, for example the call stack, the location inside cryptlib where
+the problem occurred, and the values of any variables that might be
+relevant.
+
+Hit a key...
