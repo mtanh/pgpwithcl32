@@ -4995,13 +4995,13 @@ C_RET cryptSetPgpKey(C_IN CRYPT_CONTEXT publicKey,
 
 	/* Make sure that the key data looks valid and decode it */
 	memset(sshKey, 0, 4096);
-	/*status = base64checkHeader(publicKeyData, publicKeyDataLength,
+	status = base64checkHeader(publicKeyData, publicKeyDataLength,
 		&type, &startPos);
 	if (cryptStatusError(status))
 	{
 		DEBUG_PRINT(("cryptSetSshKey %d.\n", __LINE__));
 		return(status);
-	}*/
+	}
 
 	status = base64decode(sshKey + 4, 4096 - 4, &sshKeySize,
 		(BYTE *)publicKeyData + startPos,

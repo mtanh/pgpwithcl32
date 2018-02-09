@@ -837,7 +837,7 @@ static int generateKeyPKCFunction(INOUT CONTEXT_INFO *contextInfoPtr)
 
 	/* Set up supplementary key information */
 //#ifdef USE_PGP && 0
-#if defined( USE_PGP ) /*&& 0*/
+#if defined( USE_PGP ) && 0
 	contextInfoPtr->ctxPKC->pgpCreationTime = getApproxTime();
 #endif /* USE_PGP */
 

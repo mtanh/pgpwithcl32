@@ -1372,7 +1372,7 @@ BOOLEAN testUsers(void)
 
 #define DIC_SUCCESS 1
 #define DIC_ERROR 0
-#define DIC_PGPKEYFILE "D:\\privatekey.pgp"
+#define DIC_PGPKEYFILE "D:\\pgpauthen"
 
 int publishPublicKey(const char *publicKeysetName,
 	const CRYPT_CERTIFICATE cryptCertificate)
@@ -1514,10 +1514,10 @@ int generateKey(const char *keyOwnerName,
 		CRYPT_KEYSET_FILE, privKeysetName, CRYPT_KEYOPT_CREATE);
 	if (cryptStatusOK(status))
 	{
-		/*status = cryptAddPrivateKey(cryptKeyset, cryptContext,
+		status = cryptAddPrivateKey(cryptKeyset, cryptContext,
 			privKeyPassword);
-		if (cryptStatusOK(status))*/
-			status = cryptAddPublicKey(cryptKeyset, /*cryptCertificate*/cryptContext);
+		if (cryptStatusOK(status))
+			status = cryptAddPublicKey(cryptKeyset, cryptCertificate/*cryptContext*/);
 		cryptKeysetClose(cryptKeyset);
 	}
 	if (cryptStatusOK(status))
@@ -1921,8 +1921,8 @@ int decryptMessage(const void *inData, const int inDataLength,
 		/* Add the decryption keyset to the envelope */
 		status = cryptKeysetOpen(&cryptKeyset,
 			CRYPT_UNUSED,
-			/*CRYPT_KEYSET_FILE,*/
-			CRYPT_KEYSET_ODBC,
+			CRYPT_KEYSET_FILE,
+			/*CRYPT_KEYSET_ODBC,*/
 			privKeysetName,
 			CRYPT_KEYOPT_READONLY);
 		if (cryptStatusOK(status))
@@ -2012,6 +2012,9 @@ BOOLEAN testUsers(void)
 	{
 		cryptInit();
 
+		/*CRYPT_CERTIFICATE cryptCert;
+		convertPGPtoCert("D:/client.pub", "test.pgp", &cryptCert, NULL);*/
+
 		/*status = dicGenerateKey(DIC_PGPKEYFILE);
 		if (cryptStatusError(status))
 		{
@@ -2036,7 +2039,7 @@ BOOLEAN testUsers(void)
 			"anhma7@dicetral.com", // keyOwnerEmail
 			"testkeys", // keyOwnerDSNName
 			"test pgp authen 7", // keyLabel
-			"D:/troioimetqua.pgp", // privateKetsetName
+			DIC_PGPKEYFILE, // privateKetsetName
 			"123456", // privateKetPassword
 			"testkeys"); // pubKetsetName
 		if (cryptStatusError(status))
@@ -2076,8 +2079,8 @@ BOOLEAN testUsers(void)
 		status = decryptMessage(encryptedBuf, encryptedBufLen,
 			decryptedBuf, DIC_BUFFSZ,
 			&decryptedBufLen,
-			/*"D:/troioimetqua.pgp",*/
-			"testkeys",
+			DIC_PGPKEYFILE,
+			//"testkeys",
 			"123456");
 		if (cryptStatusError(status))
 		{
@@ -2085,7 +2088,7 @@ BOOLEAN testUsers(void)
 			break;
 		}
 
-		// Try to write the decrypted data into the file
+		//// Try to write the decrypted data into the file
 		fp = fopen("D:/dec.message", "wb");
 		if (NULL == fp)
 		{
